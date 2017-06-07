@@ -1,0 +1,224 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
+
+#btn{
+  margin-left: 280px;
+  size: 14px;
+  width: auto;
+}
+
+input{
+  line-height: 5px;
+  font-family: serif;
+  width: 500px;
+}
+
+
+#date{
+  width: 150px;
+  height: 120px;
+}
+
+#dt{
+  width: 220px;
+}
+
+#datecol{
+  width: 120px;
+  margin-top: -140px;
+}
+
+#hr{
+  width: 120px;
+  margin-top: -40px;
+}
+
+#acc{
+  margin-top: 100px;
+}
+
+#selectCity{
+  width: 600px;
+
+}
+
+#cty{
+  padding-top: 6px;
+  text-align: right;
+}
+
+#remove{
+  border:  1px solid #3a3735;
+}
+
+.btn{
+    border:  1px solid #3a3735;
+    width: 75%;
+    margin-left: 18px;
+}
+
+.panel-heading{
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+table {
+  height: 40%;
+  left: 10%;
+  margin: 20px auto;
+  overflow-y: scroll;
+  position: static;
+  width: 80%;
+}
+
+thead th{
+  background: #88CCF1;
+  color: #FFF;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-weight: 100;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+tr {
+  background: #f4f7f8;
+  border-bottom: 1px solid #FFF;
+  margin-bottom: 5px;
+}
+
+th, td {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 20px;
+  text-align: left;
+  width: 33.3333%;
+}
+
+.accordion {
+    font-family: Arial, Helvetica, sans-serif;
+    border-color: #9ce4ab;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 8px;
+    margin: 0 auto;
+    height: 500px;
+    width: 1135px;
+}
+
+.accordion > ul > li,
+.accordion-title,
+.accordion-content,
+.accordion-separator {
+    float: left;
+}
+
+.accordion > ul > li {
+    background-color: #26934f;
+    margin-right: -900px;
+    margin-bottom: -0px;
+}
+
+.accordion-select:checked ~ .accordion-separator {
+    margin-right: 900px;
+    margin-bottom: 0px;
+}
+
+.accordion-title,
+.accordion-select  {
+    background-color: #3a4e42;
+    color: #ecf4ed;
+    width: 45px;
+    height: 500px;
+    font-size: 17px;
+}
+
+.accordion-title span {
+    margin-bottom: 23px;
+    margin-left: 20px;
+}
+
+.accordion-select:hover ~ .accordion-title,
+.accordion-select:checked ~ .accordion-title {
+    background-color: #0e140f;
+}
+
+.accordion-title span  {
+    transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -ms-writing-mode: lr-bt;
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    margin-left: 0px;
+    line-height: 45px;
+}
+
+.accordion-content {
+    background-color: #ebf1fd;
+    color: #301c1c;
+    height: 500px;
+    width: 900px;
+    padding: 36px;
+}
+
+.accordion-title,
+.accordion-select:checked ~ .accordion-content {
+    margin-right: 2px;
+    margin-bottom: 2px;
+}
+
+/* Do not change following properties, they aren't
+generated automatically and are common for each slider. */
+.accordion {
+    overflow: hidden;
+}
+
+.accordion > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 101%;
+}
+
+.accordion > ul > li,
+.accordion-title {
+    position: relative;
+}
+
+.accordion-select {
+    cursor: pointer;
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    margin: 0;
+    z-index: 1;
+}
+
+.accordion-title span {
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.accordion-content {
+    position: relative;
+    overflow: auto;
+}
+
+.accordion-separator {
+    transition: margin 0.3s ease 0.1s;
+    -o-transition: margin 0.3s ease 0.1s;
+    -moz-transition: margin 0.3s ease 0.1s;
+    -webkit-transition: margin 0.3s ease 0.1s;
+}

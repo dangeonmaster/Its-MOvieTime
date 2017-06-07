@@ -1,0 +1,322 @@
+<link rel="stylesheet" href="app/theatre/theatre.css">
+<!-- <script src="../bower_components/multiselect/dist/js/multiselect.min.js" type="text/javascript"> -->
+
+
+
+<div id="acc">
+<div class="accordion">
+  <ul>
+    <li>
+      <input type="radio" name="select" class="accordion-select" checked/>
+        <div class="accordion-title">
+          <span>Add New Theatres</span>
+        </div>
+        <div class="accordion-content">
+          <div class="">
+           <div class="row">
+             <div class="col-md-10 col-md-push-1">
+               <div class="form-group">
+                 <form>
+                 <div class="form-group">
+                   <label for="inputName">Theatre Name:</label>
+                   <input type="text" class="form-control" id="inputName" ng-model="theatreCtrl.TheatreName" placeholder="Theatre name">
+                 </div>
+
+                 <div class="form-group">
+                   <label for="placeName">Place Name:</label>
+                   <input type="text" class="form-control" id="placeName" ng-model="theatreCtrl.PlaceName" placeholder="Place name">
+                 </div>
+
+                 <div class="form-group">
+                   <label for="cityName">City Name:</label>
+                   <input type="text" class="form-control" id="cityName" ng-model="theatreCtrl.City" placeholder="City">
+                 </div>
+                   <button type="button" class="btn btn-primary btn-active" id="btn" ng-click="theatreCtrl.AddTheatre()">Add Theatre</button>
+               </form>
+             </div>
+             </div>
+           </div>
+          </div>
+        </div>
+      <div class="accordion-separator"></div>
+    </li>
+    <li>
+      <input type="radio" name="select" class="accordion-select" />
+        <div class="accordion-title">
+          <span>Delete Theatre Details</span>
+        </div>
+        <div class="accordion-content">
+           <div class="form-group">
+             <label for="selectCity" id="cty" class="col-sm-2">Select City</label>
+             <div class="col-sm-9">
+               <select class="form-control" id="selectCity" ng-model="theatreCtrl.City" placeholder="Select city name">
+                 <option ng-repeat="c in theatreCtrl.Cdata | unique:'City'">{{c.City}}</option>
+               </select>
+             </div>
+           </div><br>
+           <br><br>
+              <form>
+                <div>
+                  <div class="panel panel-info">
+                     <div class="panel-heading">Theatre Data</div>
+
+                   <!-- Table -->
+                   <table class="table table-hover" ng-show="theatreCtrl.City">
+                   <thead>
+                     <tr>
+                       <th>TheatreName</th>
+                       <th>PlaceName</th>
+                       <th>City</th>
+                       <th>Delete</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <tr ng-repeat="T in theatreCtrl.Cdata |filter: {City:theatreCtrl.City} | orderBy: 'name'">
+                       <td>{{T.TheatreName}}</td>
+                       <td>{{T.PlaceName}}</td>
+                       <td>{{T.City}}</td>
+                       <td><i class="glyphicon glyphicon-remove btn" id="remove" ng-click="theatreCtrl.delete(T)"></i></td>       </tr>
+                      </tr>
+                  </tbody>
+                   </table>
+                 </div>
+              </div>
+            </form>
+        </div>
+      <div class="accordion-separator"></div>
+    </li>
+    <li>
+      <input type="radio" name="select" class="accordion-select" />
+        <div class="accordion-title">
+          <span>Map New Movie</span>
+        </div>
+        <div class="accordion-content">
+          <div class="panel-body">
+            <div class="form-group">
+              <label for="selectCity" id="cty" class="col-sm-2">Movie Name:</label>
+              <div class="col-sm-9">
+                <select class="form-control" id="selectCity" ng-model="theatreCtrl.movie" placeholder="Select movie">
+                  <option ng-repeat="x in theatreCtrl.movie">{{x.Title}}</option>
+                </select>
+              </div>
+            </div><br><br>
+            <div class="form-group">
+              <label for="selectCity" id="cty"class="col-sm-2">City Name:</label>
+              <div class="col-sm-9">
+                <select class="form-control" id="selectCity" ng-model="theatreCtrl.city" placeholder="Select movie">
+                  <option ng-repeat="c in theatreCtrl.Cdata | unique:'City'">{{c.City}}</option>
+                </select>
+              </div>
+            </div><br><br>
+
+            <div class="form-group">
+              <label for="selectCity" id="cty"class="col-sm-2">Theatre Name:</label>
+              <div class="col-sm-9">
+                <select name="from[]" id="multiselect" ng-model="theatreCtrl.search" class=" form-control" size="5" multiple="multiple" data-right="#multiselect_to_1"
+                       data-right-all="#right_All_1" data-right-selected="#right_Selected_1" data-left-all="#left_All_1" data-left-selected="#left_Selected_1">
+                          <option ng-show="theatreCtrl.city" ng-repeat="q in theatreCtrl.Cdata | filter: {City:theatreCtrl.city}">{{q.TheatreName}}</option>
+                      </select>
+              </div>
+            </div><br><br><br>
+<!--            <div class="col-md-5">
+              <div class="panel panel-default">
+               <div class="panel-heading">
+                <h3 class="panel-title">All Theatre Names</h3>
+               </div>
+               <div>
+
+                  <select  selected="all" id="undo_redo_to" class="form-control" size="7" multiple="multiple"  >
+                  <option ng-show="theatreCtrl.city" ng-repeat="a in theatreCtrl.Cdata | filter: {City:theatreCtrl.city}">{{a.TheatreName}}</option>
+
+                  </select>
+             <select name="from[]" id="multiselect" ng-model="theatreCtrl.search" class=" form-control" size="5" multiple="multiple" data-right="#multiselect_to_1"
+                    data-right-all="#right_All_1" data-right-selected="#right_Selected_1" data-left-all="#left_All_1" data-left-selected="#left_Selected_1">
+                       <option ng-show="theatreCtrl.city" ng-repeat="a in theatreCtrl.Cdata | filter: {City:theatreCtrl.City}">{{a.TheatreName}}</option>
+                   </select>
+               </div>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <button type="button" id="undo_redo_undo" class="btn btn-primary btn-block">undo</button>
+                    <button type="button" id="undo_redo_rightAll" class="btn btn-default btn-block"><i class="glyphicon glyphicon-forward"></i></button>
+                    <button type="button" id="undo_redo_rightSelected" class="btn btn-default btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                    <button type="button" id="undo_redo_leftSelected" class="btn btn-default btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                    <button type="button" id="undo_redo_leftAll" class="btn btn-default btn-block"><i class="glyphicon glyphicon-backward"></i></button>
+                    <button type="button" id="undo_redo_redo" class="btn btn-warning btn-block">redo</button>
+                  </div>
+            <div class="col-md-5">
+              <div class="panel panel-default">
+               <div class="panel-heading">
+                <h3 class="panel-title">Selected Theatres</h3>
+               </div>
+               <div>
+                <select name="to[]" id="multiselect_to_1" class="form-control" size="7" multiple="multiple">
+                </select>
+               </div>
+              </div>
+            </div>    !-->
+
+            <div class="form-group"><br><br>
+              <label class="col-md-2" for="date">Select Date:</label>
+                <datepicker class="col-sm-9" name="datepicker" id="date" date-format="dd-MM-yyyy" style="color:#29a4d1">
+                  <input ng-model="theatreCtrl.date" id="dt" type="text"/>
+                </datepicker>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <button type="button" class="btn-sm btn-primary" ng-click="theatreCtrl.addDate()" name="button">Add Dates</button>
+            <div class="col-md-12">
+                <button id="datecol" class="btn" ng-repeat="d in theatreCtrl.dates">{{d.date}} &nbsp <span class="btn-xs btn-danger" ng-click="theatreCtrl.removeDate(d)">x</span></button>
+            </div>
+
+            </div>
+
+          <br><br><br>
+            <div>
+              <div id="time">
+                 <label class="col-md-2">Show Timing:</label>
+                  <select ng-init="theatreCtrl.hr='HH'"  ng-model="theatreCtrl.hr" id="HH" >
+                    <option selected="selected">HH</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
+
+                <select  id="MM" ng-init="theatreCtrl.min='MM'" ng-model="theatreCtrl.min">
+                  <option selected="selected">MM</option>
+                  <option value="00">00</option>
+                  <option value="05">05</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="25">25</option>
+                  <option value="30">30</option>
+                  <option value="35">35</option>
+                  <option value="40">40</option>
+                  <option value="45">45</option>
+                  <option value="50">50</option>
+                  <option value="55">55</option>
+               </select>
+
+               <select ng-init="theatreCtrl.type='AM'" ng-model="theatreCtrl.type">
+                 <option value="AM">AM</option>
+                 <option value="PM">PM</option>
+               </select>
+
+              <button type="button" class="btn-sm btn-primary" ng-click="theatreCtrl.addTime()" name="button">Addnew</button>
+            </div><br><br>
+             <div id="tim" class="container">
+           <div class="row">
+          <div class="col-md-6">
+           <button ng-click="theatreCtrl.removeTime(y)" class="btn btn-xs" id="hr" ng-repeat="y in theatreCtrl.time">{{y.time}}<span>x<span> &nbsp</button>
+          </div>
+         </div>
+         <div class="row"><br>
+         <div id="mapbtn" class="col-md-3 col-md-push-3">  <button type="button" class="btn btn-primary" ng-click="theatreCtrl.mapping()" name="button">Save Mapping Details</button>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+      <div class="accordion-separator"></div>
+  </li>
+  <li>
+      <input type="radio" name="select" class="accordion-select" />
+         <div class="accordion-title">
+           <span>Edit Theatre Details</span>
+         </div>
+         <div class="accordion-content">
+           <div class="movie-tab-content">
+
+         <label for=""><h4>City:</h4></label>
+         <select value="" class="form-control"  ng-model="theatreCtrl.city">
+          <option name="" id="" ng-repeat="c in theatreCtrl.Cdata | unique:'City'" >{{c.City}}</option>
+         </select>
+
+        <label for=""><h4>Movie Name:</h4></label>
+         <select value="" class="form-control" ng-model="theatreCtrl.movie">
+         <option name="" id="" ng-repeat="x in theatreCtrl.movie">{{x.Title}}</option>
+         </select>
+
+        <label for=""><h4>Theatre:</h4></label>
+         <select value="" class="form-control" ng-model="theatreCtrl.search">
+         <option name="" id="" ng-repeat="q in theatreCtrl.Cdata | filter: {City:theatreCtrl.city}">{{q.TheatreName}}</option>
+         </select>
+
+
+       <table class="table">
+         <tr>
+          <td>Theatre Name</td>
+          <td>Timing</td>
+          <td>Date</td>
+          <td><td>
+         </tr>
+         <tr ng-show="theatreCtrl.city && theatreCtrl.search" ng-repeat="q in theatreCtrl.MappigDetails | filter:{location:theatreCtrl.showCity} | filter:{MovieName:theatreCtrl.showTitle} | filter:{theatreName:theatreCtrl.showTheatre}  ">
+          <td>{{q.TheatreName}}</td>
+          <td><h5 ng-repeat="d in x.time">{{d.time}}</h5></td>
+          <td><h5 ng-repeat="d in x.date">{{d.date}}</h5></td>
+          <td>  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Update</button></td
+         </tr>
+      </table>
+    </div>
+  </div>
+  <div class="accordion-separator"></div>
+</li>
+
+    <li>
+      <input type="radio" name="select" class="accordion-select" />
+        <div class="accordion-title">
+          <span>Edit Time and Date</span>
+          </div>
+           <div class="accordion-content">
+            <div class="movie-tab-content">
+             <label for="City"><h5>City:</h5></label>
+             <select name="DeleteMovie" class="form-control Ropt" ng-model="theatreCtrl.Rlocation">
+             <option ng-repeat="n in theatreCtrl.MappigDetails ">{{n.location}}</option>
+             </select>
+
+           <label for="DeleteMovie"><h5>Movie Name:</h5></label>
+            <select name="DeleteMovie" class="form-control Ropt" ng-model="theatreCtrl.RMovieName">
+            <option ng-repeat="n in theatreCtrl.MappigDetails ">{{n.MovieName}}</option>
+            </select>
+
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table Rtable">
+                <tr id="Rtxt">
+                  <td><b>Movie Name</b></td>
+                  <td><b>Theatre Name</b></td>
+                  <td><b>City</b></td>
+                  <td></td>
+                </tr>
+                <tr  ng-repeat="n in theatreCtrl.MappigDetails | filter:{location:theatreCtrl.Rlocation}|
+                filter:{MovieName:theatreCtrl.RMovieName}"  ng-show="theatreCtrl.Rlocation && theatreCtrl.RMovieName">
+                  <td>{{n.MovieName}}</td>
+                  <td>{{n.theatreName}}</td>
+                  <td>{{n.location}}</td>
+                  <td><span class="btn glyphicon glyphicon-trash" ng-click="theatreCtrl.removeMovie(n)" style="color:red; cursor:grab"></span><td>
+               </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+       </div>
+      </div>
+  </div>
+
+    </div>
+        </div>
+      <div class="accordion-separator"></div>
+    </li>
+  </ul>
+</div>
+</div>

@@ -1,0 +1,39 @@
+h3{
+  color: gray;
+  text-align: center;
+}
+
+img{
+width:170px;height:200px;
+}
+
+#remove{
+  border:  1px solid #3a3735;
+}
+
+#th{
+  background-color: #5c41f4;
+  font-weight: 400;
+  font-size: 17px;
+  font-style: serif;
+  color: white;
+}
+
+#th1{
+  background-color: #dcdbe0;
+  }
+
+#btn2{
+    font-size: 18px;
+    background-color: blue;
+    color: black;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+}
+
+h5{
+  display: none;
+}
+#table{
+ display: none;
+}

@@ -1,0 +1,129 @@
+<link rel="stylesheet" href="app/movies/movies.css">
+<script>
+  $(document).ready(function(){
+    $("#button").click(function(){
+      var x = $("#fval").val();
+
+      var y = $("#title td:eq(1)").html();
+
+      if(x !=="" && y !==""){
+         $("#table").slideDown(function(){
+           $("h5").fadeOut(200);
+           $("#btn2").click(function(){
+             $("#table").slideUp();
+           });
+         });
+      }
+      else{
+        $("h5").fadeIn(100);
+        $("#table").slideUp();
+      }
+    });
+  });
+</script>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-push-2">
+
+
+      <h3>Add Movie</h3>
+       <hr></hr>
+          <form novalidate>
+            <div class="form" novalidate>
+              <div class="form-group">
+                <h5>Movie is Not found !</h5>
+
+                <input type="text" id="fval" placeholder="Movie name"ng-model="moviesendCtrl.movieName" class="form-control" ng-required='true' required></input>
+                <br><input type="text" id="fval" placeholder="Movie Genre" ng-model="moviesendCtrl.movieGenre" class="form-control" ng-required='true' required></input>
+
+                </br>
+                <div class="row">
+                  <div class="col-md-4 col-md-push-5">
+                  <button type="button" class="btn btn-success" id="button" ng-click='moviesendCtrl.searchMovie()'>
+                  <span class="glyphicon glyphicon-search" aria-hidden='true'></span>&nbspSearch</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+    </div>
+  </div>
+</div>
+
+<div class="container" id="table">
+  <div class="row">
+    <div class="col-md-10 col-md-push-1">
+      <table class="table">
+        <tr>
+          <td>Poster</td>
+          <td>Title</td>
+          <td>Year</td>
+          <td>Genre</td>
+          <td>Langauge</td>
+          <td>Starcast</td>
+          <td>Director</td>
+          <td>Duration</td>
+        </tr>
+
+        <tr id="title">
+          <td><img src="{{moviesendCtrl.useData.poster_path}}" alt=""></td>
+          <td>{{moviesendCtrl.useData.title}}</td>
+          <td>{{moviesendCtrl.useData.release_date}}</td>
+          <td>{{moviesendCtrl.useData.genre}}</td>
+          <td>{{moviesendCtrl.useData.Language}}</td>
+          <td>{{moviesendCtrl.useData.Actors}}</td>
+          <td>{{moviesendCtrl.useData.Director}}</td>
+          <td>{{moviesendCtrl.useData.Runtime}}</td>
+        </tr>
+
+      </table>
+
+      <div class="row">
+        <div class="col-md-5">
+          <button type="button" id="btn2" ng-click="moviesendCtrl.AddMovie()"><i class="glyphicon glyphicon-plus"></i> Add Movie</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="table2">
+  <div class="row">
+    <div class="col-md-10 col-md-push-1">
+      <h3>Added Movies list</h3>
+      <div class="container">
+
+      </div>
+        <table class="table">
+          <tr id="th">
+           <td>Title</td>
+           <td>Language</td>
+           <td>Genre</td>
+           <td>Director<td>
+           <td>Actors</td>
+           <td>Year</td>
+           <td>Duration</td>
+           <td></td>
+
+
+          </tr>
+          <tr class="table1" ng-repeat="x in moviesendCtrl.getDataDb" id="th1">
+            <td>{{x.Title}}</td>
+            <td>{{x.Langauge}}</td>
+            <td>{{x.Genre}}</td>
+            <td>{{x.Director}}</td>
+            <td colspan="2">{{x.Actors}}</td>
+            <td>{{x.Year}}</td>
+            <td>{{x.Runtime}}</td>
+            <td><i class="glyphicon glyphicon-remove btn" id="remove" ng-click="moviesendCtrl.delete(x)"></i></td>
+
+          </tr>
+
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
